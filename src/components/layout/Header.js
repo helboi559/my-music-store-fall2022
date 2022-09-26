@@ -1,3 +1,4 @@
+/* eslint-disable */
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AppBar from '@mui/material/AppBar';
@@ -11,7 +12,7 @@ import { Link } from 'react-router-dom';
 export default function Header(props) {
   const { user } = props;
   console.log('user prop in the header: ', user);
-
+  //hiya
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
