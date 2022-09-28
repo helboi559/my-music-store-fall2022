@@ -1,12 +1,16 @@
+/* eslint-disable */
 import {
   Box, Button, TextField, Typography,
 } from '@mui/material';
 import { useState } from 'react';
+// import { userContext } from '../../context/UserContext';
+
+import { useUser } from '../../context/UserContext';
 import { sampleUserData } from '../../mockData';
 import Layout from '../layout/Layout';
 
-function SignInPage(props) {
-  const { user, signIn, signOut } = props;
+function SignInPage() {
+  const { user, signIn, signOut } = useUser();
 
   const [signInForm, setSignInForm] = useState({
     email: '',

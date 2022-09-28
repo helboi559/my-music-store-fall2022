@@ -1,14 +1,18 @@
+/* eslint-disable */
 import { Box, Button } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
 import Layout from '../layout/Layout';
-
-function CartPage(props) {
+// import { useContext } from 'react';
+// import { cartContext } from '../../App';
+// import { cartContext } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext';
+function CartPage() {
   const {
     shoppingCart, removeFromCart, emptyCart,
-  } = props;
+  } = useCart();
 
   return (
     <Layout>

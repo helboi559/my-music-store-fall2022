@@ -1,3 +1,4 @@
+/* eslint-disable */
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AppBar from '@mui/material/AppBar';
@@ -7,9 +8,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useUser } from '../../context/UserContext';
 export default function Header(props) {
-  const { user } = props;
+  const { user } = useUser()
 
   return (
     <Box sx={{ flexGrow: 1 }}>

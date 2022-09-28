@@ -1,3 +1,4 @@
+/* eslint-disable */
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Box, Button } from '@mui/material';
 import Card from '@mui/material/Card';
@@ -8,10 +9,13 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-
+// import { cartContext } from '../App';
+// import { cartContext } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
 function ProductDisplay(props) {
-  const { productData, addToCart } = props;
-
+  const { productData} = props;
+  // const {addToCart} = React.useContext(cartContext)
+  const {addToCart} = useCart()
   const onAddToCart = () => {
     addToCart(productData);
   };
