@@ -1,18 +1,43 @@
 /* eslint-disable */
-import React,{useState,useContext,createContext} from "react"
+import React,{useState,useContext,createContext, useReducer} from "react"
 
 export const cartContext = createContext();
 
 //hook starts with use
 export const useCart = () => useContext(cartContext)
 
+const ACTIONS = {
+    ADD_TO_CART : 'add-to-cart',
+    INCREASE_TO_CART: 'increase-to-cart',
+    REMOVE_FROM_CART : 'remove-from-cart',
+    EMPTY_CART : 'empty-cart'
+}
+
+// const initialState = {
+
+// }
+const reducer = (state,action) => {
+    switch (action.type) {
+        case ACTIONS.ADD_TO_CART: {
+            // const exists = 
+            // return {...state,}
+        }
+        case ACTIONS.INCREASE_TO_CART: {
+            return
+        }
+    
+        default:
+            break;
+    }
+}
+
 const CartProvider = (props) => {
     const {children} = props
-    const shoppingCartInitialState = [];
-
-    const [shoppingCart, setShoppingCart] = useState(shoppingCartInitialState);
-
-    // console.log('shopping cart state: ', shoppingCart);
+    // usecontext 
+    // const shoppingCartInitialState = [];
+    // const [shoppingCart, setShoppingCart] = useState(shoppingCartInitialState);
+    const shoppingCartInitialState = []
+    const [shoppingCart,dispatch] = useReducer(reducer,shoppingCartInitialState)
 
     const addToCart = (productData) => {
         // Check if the product already exist in the shopping cart
@@ -33,22 +58,25 @@ const CartProvider = (props) => {
 
             return cartItem;
         });
-
-        setShoppingCart(newShoppingCart);
+        // setShoppingCart(newShoppingCart)
+        dispatch({type:ACTIONS.INCREASE_TO_CART,});
         } else {
         // if we don't find the product, we want to add it to the shopping cart for the first time.
         const newCartItem = { ...productData, quantity: 1, total: productData.price };
-        setShoppingCart([...shoppingCart, newCartItem]);
+        // setShoppingCart([...shoppingCart, newCartItem]);
+        dispatch({type:ACTIONS.ADD_TO_CART,})
         }
     };
 
     const removeFromCart = (productId) => {
         // remove item from cart that match the product id.
         // we currently do not support lowering the quantity.
-        setShoppingCart(shoppingCart.filter((cartItem) => cartItem.id !== productId));
+        // setShoppingCart(shoppingCart.filter((cartItem) => cartItem.id !== productId));
+        dispatch({type:ACTIONS.REMOVE_FROM_CART})
     };
 
-  const emptyCart = () => setShoppingCart(shoppingCartInitialState);
+//   const emptyCart = () => setShoppingCart(shoppingCartInitialState);
+    const emptyCart = () => dispatch({type:ACTIONS.EMPTY_CART})
     return (
         <cartContext.Provider value={{shoppingCart,addToCart,removeFromCart,emptyCart}}>
             {children}
