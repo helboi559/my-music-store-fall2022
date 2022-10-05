@@ -1,11 +1,16 @@
+/* eslint-disable */
 import {
   Card, CardMedia, Box, Typography, IconButton,
 } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../state-management/cartSlice';
 function CartItem(props) {
-  const { cartItem, removeFromCart } = props;
-
+  const { cartItem} = props;
+  const dispatch = useDispatch()
+  // const removeCart = () => {
+  //   dispatch(removeFromCart(cartItem))
+  // }
   return (
     <Card>
       <Box display="flex" width="100%">
@@ -37,7 +42,7 @@ function CartItem(props) {
           </Typography>
         </Box>
         <Box px={2} display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-          <IconButton onClick={() => removeFromCart(cartItem.id)}>
+          <IconButton onClick={()=> dispatch(removeFromCart(cartItem))}>
             <DeleteForeverIcon />
           </IconButton>
         </Box>

@@ -9,15 +9,19 @@ import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { useSelector,useDispatch } from 'react-redux';
+import { addToCart } from '../state-management/cartSlice';
 // import { cartContext } from '../App';
 // import { cartContext } from '../context/CartContext';
-import { useCart } from '../context/CartContext';
+// import { useCart } from '../context/CartContext';
 function ProductDisplay(props) {
   const { productData} = props;
   // const {addToCart} = React.useContext(cartContext)
-  const {addToCart} = useCart()
+  const dispatch = useDispatch();
+  // const {addToCart} = useCart()
+  
   const onAddToCart = () => {
-    addToCart(productData);
+    dispatch(addToCart(productData));
   };
 
   return (

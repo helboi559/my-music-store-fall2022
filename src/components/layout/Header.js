@@ -8,10 +8,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { useUser } from '../../context/UserContext';
-export default function Header(props) {
-  const { user } = useUser()
+// import { useUser } from '../../context/UserContext';
+import { useSelector,useDispatch } from 'react-redux';
 
+
+export default function Header(props) {
+  // const { user } = useUser()
+  const user = useSelector((state) => {state.user})
+  
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

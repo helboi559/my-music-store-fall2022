@@ -5,15 +5,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
 import CartItem from '../CartItem';
 import Layout from '../layout/Layout';
-// import { useContext } from 'react';
-// import { cartContext } from '../../App';
-// import { cartContext } from '../../context/CartContext';
-import { useCart } from '../../context/CartContext';
-function CartPage() {
-  const {
-    shoppingCart, removeFromCart, emptyCart,
-  } = useCart();
 
+import {useDispatch, useSelector} from "react-redux"
+import { emptyCart } from '../../state-management/cartSlice';
+function CartPage() {
+  
+  const dispatch = useDispatch()
+  const shoppingCart = useSelector((state)=>state.shoppingCarts.shoppingCart)
+  console.log(shoppingCart)
+  
   return (
     <Layout>
       <Box
@@ -25,7 +25,7 @@ function CartPage() {
       />
       {shoppingCart.map((cartItem) => (
         <Box mb={3}>
-          <CartItem cartItem={cartItem} removeFromCart={removeFromCart} />
+          <CartItem cartItem={cartItem}  />
         </Box>
       ))}
       <Box mt={5}>
@@ -37,7 +37,7 @@ function CartPage() {
             fullWidth
             variant="contained"
             startIcon={<DeleteIcon />}
-            onClick={emptyCart}
+            onClick={()=> dispatch(emptyCart())}
           >
             Empty Cart
           </Button>
